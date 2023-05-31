@@ -29,4 +29,8 @@ public class Direccion {
 
     @Column(length = 20)
     private String pasaje;
+
+    @OneToOne
+    @JoinColumn(name = "aspirante_id")
+    private Aspirante aspirante;
 }

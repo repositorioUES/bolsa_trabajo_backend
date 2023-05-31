@@ -1,6 +1,8 @@
 package com.bad115.SistemaBolsa.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "aspirantes")
@@ -24,7 +28,7 @@ public class Aspirante {
     private String tipo_documento;
 
     @Column(length = 15)
-    private String documento_identidad;
+    private String numero_documento_identidad;
 
     @Column(length = 30)
     private String primer_nombre;
@@ -58,4 +62,20 @@ public class Aspirante {
 
     @Column(length = 200)
     private String redes_sociales;
+
+    @ManyToMany
+    @JsonBackReference
+    @JoinTable(name = "aspirante_oferta", joinColumns = @JoinColumn(name = "aspirante_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"))
+    private Set<Oferta> ofertas = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "genero_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Genero genero;
+
+    @OneToMany(mappedBy = "aspirante", cascade = CascadeType.ALL)
+    private Set<ConocimientoAcademico> conocimientos_academicos = new HashSet<>();
+
+    @OneToMany(mappedBy = "aspirante", cascade = CascadeType.ALL)
+    private Set<Certificacion> certificaciones = new HashSet<>();
 }

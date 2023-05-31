@@ -1,6 +1,7 @@
 package com.bad115.SistemaBolsa.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,4 +30,5 @@ public class Usuario {
     private Set<UsuarioRol> usuarioRoles = new HashSet<>();
 
 
+    //private Empresa empresa;
 }

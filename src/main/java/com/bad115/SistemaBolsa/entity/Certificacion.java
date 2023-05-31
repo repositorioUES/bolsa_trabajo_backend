@@ -1,6 +1,7 @@
 package com.bad115.SistemaBolsa.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,4 +38,9 @@ public class Certificacion {
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date fecha_fin;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "aspirante_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Aspirante aspirante;
 }

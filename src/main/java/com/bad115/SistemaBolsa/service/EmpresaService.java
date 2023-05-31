@@ -1,19 +1,22 @@
 package com.bad115.SistemaBolsa.service;
 
 import com.bad115.SistemaBolsa.entity.Empresa;
+import com.bad115.SistemaBolsa.entity.Oferta;
 
 import java.util.List;
-import java.util.Optional;
+
 
 public interface EmpresaService {
 
-    public Empresa save(Empresa empresa);
+    public Empresa guardarEmpresa(Empresa empresa);
 
-    public Empresa getEmpresa(Long id);
+    public List<Empresa> obtenerEmpresas();
 
-    public List<Empresa> getEmpresas();
+    public Empresa obtenerEmpresa(String nombre);
 
-    public void delete(Long id);
+    public Empresa obtenerEmpresa(Long id);
 
-    public Empresa update(Empresa empresa, Long id);
+    public Empresa actualizarEmpresa(Empresa empresa, Long id);
+
+    public void eliminarEmpresa(Long id);
 }

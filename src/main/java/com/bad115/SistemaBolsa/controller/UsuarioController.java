@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -17,7 +18,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/")
+    @PostMapping
     public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{
         Set<UsuarioRol> usuarioRoles = new HashSet<>();
 
@@ -42,6 +43,11 @@ public class UsuarioController {
     @DeleteMapping("/{idUsuario}")
     public void eliminarUsuario(@PathVariable("idUsuario") Long idUsuario){
         usuarioService.eliminarUsuario(idUsuario);
+    }
+
+    @GetMapping
+    public List<Usuario> obtenerUsuarios() {
+        return usuarioService.obtenerUsuarios();
     }
 
 

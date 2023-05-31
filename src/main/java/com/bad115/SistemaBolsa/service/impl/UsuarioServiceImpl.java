@@ -8,6 +8,7 @@ import com.bad115.SistemaBolsa.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -44,5 +45,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void eliminarUsuario(Long idUsuario) {
         usuarioRepository.deleteById(idUsuario);
+    }
+
+    @Override
+    public List<Usuario> obtenerUsuarios() {
+        return usuarioRepository.findAll();
     }
 }
