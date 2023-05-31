@@ -41,7 +41,7 @@ public class EmpresaServiceImpl implements EmpresaService {
     @Override
     public Empresa update(Empresa empresa, Long id) {
         Empresa empresaActualizada = empresaRepository.getReferenceById(id);
-        empresaActualizada.setDireccion(empresa.getDireccion());
+       // empresaActualizada.setDireccion(empresa.getDireccion());
         empresaActualizada.setEmail(empresa.getEmail());
         empresaActualizada.setTelefono(empresa.getTelefono());
         empresaActualizada.setNombre(empresa.getNombre());
