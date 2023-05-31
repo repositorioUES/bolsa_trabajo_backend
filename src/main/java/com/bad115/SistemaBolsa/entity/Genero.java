@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "generos")
@@ -18,6 +20,9 @@ public class Genero {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 1)
+    @Column(length = 1, unique = true)
     private String nombre;
+
+    @OneToMany(mappedBy = "genero", cascade = CascadeType.ALL)
+    private Set<Aspirante> aspirantes = new HashSet<>();
 }

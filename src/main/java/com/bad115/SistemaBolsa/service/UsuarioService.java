@@ -3,6 +3,7 @@ package com.bad115.SistemaBolsa.service;
 import com.bad115.SistemaBolsa.entity.Usuario;
 import com.bad115.SistemaBolsa.entity.UsuarioRol;
 
+import java.util.List;
 import java.util.Set;
 
 public interface UsuarioService {
@@ -12,5 +13,7 @@ public interface UsuarioService {
     public Usuario obtenerUsuario(String nombreUsuario);
 
     public void eliminarUsuario(Long idUsuario);
+
+    public List<Usuario> obtenerUsuarios();
 
 }

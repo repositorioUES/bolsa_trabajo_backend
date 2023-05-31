@@ -9,33 +9,33 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/empresas")
+@CrossOrigin("*")
 public class EmpresaController {
-
     @Autowired
     private EmpresaService empresaService;
 
+    @PostMapping
+    public Empresa guardarEmpresa(@RequestBody Empresa empresa) {
+        return empresaService.guardarEmpresa(empresa);
+    }
+
     @GetMapping
-    public List<Empresa> getEmpresas() {
-        return empresaService.getEmpresas();
+    public List<Empresa> obtenerEmpresas() {
+        return empresaService.obtenerEmpresas();
     }
 
     @GetMapping("/{id}")
-    public Empresa getEmpresa(@PathVariable Long id) {
-        return empresaService.getEmpresa(id);
-    }
-
-    @PostMapping
-    public Empresa saveEmpresa(@RequestBody Empresa empresa) {
-        return empresaService.save(empresa);
+    public Empresa obtenerEmpresa(@PathVariable("id") Long id) {
+        return empresaService.obtenerEmpresa(id);
     }
 
     @PutMapping("/{id}")
-    public Empresa updateEmpresa(@RequestBody Empresa empresa, @PathVariable("id") Long id) {
-        return empresaService.update(empresa, id);
+    public Empresa actualizarEmpresa(@PathVariable("/{id}") Long id, @RequestBody Empresa empresa) {
+        return empresaService.actualizarEmpresa(empresa, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmpresa(@PathVariable("id") Long id) {
-        empresaService.delete(id);
+    public void eliminarEmpresa(@PathVariable("id") Long id) {
+        empresaService.eliminarEmpresa(id);
     }
 }
