@@ -21,8 +21,8 @@ public class OfertaServiceImpl implements OfertaService {
     }
 
     @Override
-    public List<Oferta> obtenerOfertas(Empresa empresa) {
-        return ofertaRepository.findByEmpresa(empresa);
+    public List<Oferta> obtenerOfertas() {
+        return ofertaRepository.findAll();
     }
 
     @Override

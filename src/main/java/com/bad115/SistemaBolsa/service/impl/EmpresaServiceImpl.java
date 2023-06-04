@@ -4,6 +4,7 @@ import com.bad115.SistemaBolsa.entity.Empresa;
 import com.bad115.SistemaBolsa.entity.Oferta;
 import com.bad115.SistemaBolsa.entity.Usuario;
 import com.bad115.SistemaBolsa.repository.EmpresaRepository;
+import com.bad115.SistemaBolsa.repository.UsuarioRepository;
 import com.bad115.SistemaBolsa.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class EmpresaServiceImpl implements EmpresaService {
 
     @Autowired
     private EmpresaRepository empresaRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @Override
     public Empresa guardarEmpresa(Empresa empresa) {

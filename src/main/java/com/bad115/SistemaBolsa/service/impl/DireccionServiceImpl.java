@@ -21,11 +21,6 @@ public class DireccionServiceImpl implements DireccionService {
     }
 
     @Override
-    public Direccion obtenerDireccion(Aspirante aspirante) {
-        return direccionRepository.findByAspirante(aspirante);
-    }
-
-    @Override
     public Direccion obtenerDireccion(Long id) {
         return direccionRepository.getReferenceById(id);
     }

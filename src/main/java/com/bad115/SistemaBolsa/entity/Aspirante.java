@@ -42,7 +42,6 @@ public class Aspirante {
     @Column(length = 30)
     private String segundo_apellido;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date fecha_nacimiento;
 
     @Column(length = 17)

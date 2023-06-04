@@ -10,7 +10,7 @@ public interface OfertaService {
 
     public Oferta guardarOferta(Oferta oferta);
 
-    public List<Oferta> obtenerOfertas(Empresa empresa);
+    public List<Oferta> obtenerOfertas();
 
     public Oferta obtenerOferta(Long id);
 

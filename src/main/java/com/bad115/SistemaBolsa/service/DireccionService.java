@@ -10,8 +10,6 @@ public interface DireccionService {
 
     public Direccion guardarDireccion(Direccion direccion);
 
-    public Direccion obtenerDireccion(Aspirante aspirante);
-
     public Direccion obtenerDireccion(Long id);
 
     public List<Direccion> obtenerDirecciones();
