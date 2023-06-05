@@ -53,5 +53,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioRepository.findAll();
     }
 
-
+    @Override
+    public Usuario actualizarUsuario(Usuario usuario, Long id){
+        Usuario usuariolocal = usuarioRepository.getReferenceById(id);
+        usuariolocal.setEmailUsuario(usuario.getEmailUsuario());
+        usuariolocal.setUsuarioRoles(usuario.getUsuarioRoles());
+        return usuarioRepository.save(usuariolocal);
+    }
 }

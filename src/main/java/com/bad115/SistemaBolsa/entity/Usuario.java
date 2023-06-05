@@ -36,6 +36,17 @@ public class Usuario implements UserDetails{
         this.emailUsuario = emailUsuario;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", emailUsuario='" + emailUsuario + '\'' +
+                ", usuarioRoles=" + usuarioRoles +
+                '}';
+    }
+
     public Long getIdUsuario() {
         return idUsuario;
     }

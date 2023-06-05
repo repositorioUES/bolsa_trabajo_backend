@@ -24,6 +24,15 @@ public class UsuarioRol {
     @ManyToOne
     private Rol rol;
 
+    @Override
+    public String toString() {
+        return "UsuarioRol{" +
+                "usuarioRolId=" + usuarioRolId +
+                ", usuario=" + usuario +
+                ", rol=" + rol +
+                '}';
+    }
+
     public Long getUsuarioRolId() {
         return usuarioRolId;
     }
