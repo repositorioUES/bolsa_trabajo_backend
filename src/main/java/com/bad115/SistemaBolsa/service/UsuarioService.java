@@ -16,4 +16,6 @@ public interface UsuarioService {
 
     public List<Usuario> obtenerUsuarios();
 
+    public Usuario actualizarUsuario(Usuario usuario, Long id);
+
 }
