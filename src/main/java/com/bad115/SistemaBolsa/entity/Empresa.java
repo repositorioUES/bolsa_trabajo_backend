@@ -33,10 +33,12 @@ public class Empresa {
     @Column(length = 30)
     private String email;
 
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Oferta> ofertas = new HashSet<>();
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    //@MapsId
     @JoinColumn(name = "usuario_id")
+    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     private Usuario usuario;
 }

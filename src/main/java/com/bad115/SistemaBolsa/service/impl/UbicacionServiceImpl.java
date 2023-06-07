@@ -1,6 +1,5 @@
 package com.bad115.SistemaBolsa.service.impl;
 
-import com.bad115.SistemaBolsa.entity.Oferta;
 import com.bad115.SistemaBolsa.entity.Ubicacion;
 import com.bad115.SistemaBolsa.repository.UbicacionRepository;
 import com.bad115.SistemaBolsa.service.UbicacionService;
@@ -26,11 +25,6 @@ public class UbicacionServiceImpl implements UbicacionService {
     }
 
     @Override
-    public Ubicacion obtenerUbicacion(Oferta oferta) {
-        return ubicacionRepository.findByOferta(oferta);
-    }
-
-    @Override
     public List<Ubicacion> obtenerUbicaciones() {
         return ubicacionRepository.findAll();
     }
@@ -41,7 +35,6 @@ public class UbicacionServiceImpl implements UbicacionService {
         ubicacionLocal.setNombre(ubicacion.getNombre());
         ubicacionLocal.setLatitud(ubicacion.getLatitud());
         ubicacionLocal.setLongitud(ubicacion.getLongitud());
-        ubicacionLocal.setOferta(ubicacion.getOferta());
         return ubicacionRepository.save(ubicacionLocal);
     }
 

@@ -26,8 +26,4 @@ public class Ubicacion {
 
     @Column(length = 30)
     private String longitud;
-
-    @OneToOne
-    @JoinColumn(name = "oferta_id")
-    private Oferta oferta;
 }

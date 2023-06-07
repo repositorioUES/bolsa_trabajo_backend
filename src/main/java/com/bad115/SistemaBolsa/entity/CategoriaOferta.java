@@ -27,6 +27,6 @@ public class CategoriaOferta {
     @Column(length = 100)
     private String descripcion;
 
-    @OneToMany(mappedBy = "categoria_oferta", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "categoria_oferta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Oferta> ofertas = new HashSet<>();
 }
