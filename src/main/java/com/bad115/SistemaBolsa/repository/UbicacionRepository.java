@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface UbicacionRepository extends JpaRepository<Ubicacion, Long> {
-    public Ubicacion findByOferta(Oferta oferta);
+
 }

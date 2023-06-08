@@ -12,8 +12,6 @@ public interface EmpresaService {
 
     public List<Empresa> obtenerEmpresas();
 
-    public Empresa obtenerEmpresa(String nombre);
-
     public Empresa obtenerEmpresa(Long id);
 
     public Empresa actualizarEmpresa(Empresa empresa, Long id);

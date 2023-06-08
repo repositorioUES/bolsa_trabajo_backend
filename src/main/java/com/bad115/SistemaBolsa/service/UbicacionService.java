@@ -11,8 +11,6 @@ public interface UbicacionService {
 
     public Ubicacion obtenerUbicacion(Long id);
 
-    public Ubicacion obtenerUbicacion(Oferta oferta);
-
     public List<Ubicacion> obtenerUbicaciones();
 
     public Ubicacion actualizarUbicacion(Ubicacion ubicacion, Long id);

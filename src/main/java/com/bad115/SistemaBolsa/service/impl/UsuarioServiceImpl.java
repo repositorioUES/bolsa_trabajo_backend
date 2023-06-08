@@ -2,6 +2,7 @@ package com.bad115.SistemaBolsa.service.impl;
 
 import com.bad115.SistemaBolsa.entity.Usuario;
 import com.bad115.SistemaBolsa.entity.UsuarioRol;
+import com.bad115.SistemaBolsa.exception.UsuarioFoundException;
 import com.bad115.SistemaBolsa.repository.RolRepository;
 import com.bad115.SistemaBolsa.repository.UsuarioRepository;
 import com.bad115.SistemaBolsa.service.UsuarioService;
@@ -22,10 +23,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario guardarUsuario(Usuario usuario, Set<UsuarioRol> usuarioRoles) throws Exception {
-        Usuario usuarioLocal = usuarioRepository.findByNombreUsuario(usuario.getNombreUsuario());
+        Usuario usuarioLocal = usuarioRepository.findByUsername(usuario.getUsername());
         if (usuarioLocal != null){
             System.out.println("El usuario ya existe");
-            throw new Exception("El usuario ya esta presente");
+            throw new UsuarioFoundException("Usuario ya esta registrado");
         }
         else{
             for(UsuarioRol usuarioRol:usuarioRoles){
@@ -38,8 +39,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario obtenerUsuario(String nombreUsuario) {
-        return usuarioRepository.findByNombreUsuario(nombreUsuario);
+    public Usuario obtenerUsuario(String username) {
+        return usuarioRepository.findByUsername(username);
     }
 
     @Override
@@ -50,5 +51,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<Usuario> obtenerUsuarios() {
         return usuarioRepository.findAll();
+    }
+
+    @Override
+    public Usuario actualizarUsuario(Usuario usuario, Long id){
+        Usuario usuariolocal = usuarioRepository.getReferenceById(id);
+        usuariolocal.setEmailUsuario(usuario.getEmailUsuario());
+        usuariolocal.setUsuarioRoles(usuario.getUsuarioRoles());
+        return usuarioRepository.save(usuariolocal);
     }
 }

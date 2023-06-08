@@ -10,10 +10,12 @@ public interface UsuarioService {
 
     public Usuario guardarUsuario(Usuario usuario, Set<UsuarioRol> usuarioRoles) throws Exception;
 
-    public Usuario obtenerUsuario(String nombreUsuario);
+    public Usuario obtenerUsuario(String username);
 
     public void eliminarUsuario(Long idUsuario);
 
     public List<Usuario> obtenerUsuarios();
+
+    public Usuario actualizarUsuario(Usuario usuario, Long id);
 
 }
