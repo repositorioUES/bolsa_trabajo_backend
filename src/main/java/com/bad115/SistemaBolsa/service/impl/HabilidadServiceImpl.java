@@ -1,5 +1,6 @@
 package com.bad115.SistemaBolsa.service.impl;
 
+import com.bad115.SistemaBolsa.entity.DetalleHabilidad;
 import com.bad115.SistemaBolsa.entity.Habilidad;
 import com.bad115.SistemaBolsa.repository.HabilidadRepository;
 import com.bad115.SistemaBolsa.service.HabilidadService;
@@ -39,5 +40,15 @@ public class HabilidadServiceImpl implements HabilidadService {
         Habilidad habiliadActualizada = habilidadRepository.getReferenceById(id);
         habiliadActualizada.setCategoria(habilidad.getCategoria());
         return habilidadRepository.save(habiliadActualizada);
+    }
+
+    @Override
+    public boolean existById(Long id) {
+        return habilidadRepository.existsById(id);
+    }
+
+    @Override
+    public List<DetalleHabilidad> getDetalleHabilidades(Long id) {
+        return null;
     }
 }

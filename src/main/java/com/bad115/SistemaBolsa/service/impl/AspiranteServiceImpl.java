@@ -1,7 +1,7 @@
 package com.bad115.SistemaBolsa.service.impl;
 
 import com.bad115.SistemaBolsa.entity.Aspirante;
-import com.bad115.SistemaBolsa.repository.AspiranteeRepository;
+import com.bad115.SistemaBolsa.repository.AspiranteRepository;
 import com.bad115.SistemaBolsa.service.AspiranteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.List;
 public class AspiranteServiceImpl implements AspiranteService {
 
     @Autowired
-    private AspiranteeRepository aspiranteeRepository;
+    private AspiranteRepository aspiranteeRepository;
 
 
     @Override

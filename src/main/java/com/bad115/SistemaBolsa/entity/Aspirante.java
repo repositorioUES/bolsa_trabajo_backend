@@ -1,6 +1,7 @@
 package com.bad115.SistemaBolsa.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -78,4 +80,58 @@ public class Aspirante {
 
     @OneToMany(mappedBy = "aspirante", cascade = CascadeType.ALL)
     private Set<Certificacion> certificaciones = new HashSet<>();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aspirante")
+    @JsonIgnore
+    private List<ActividadAdicional> actividad_adicional;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aspirante")
+    @JsonIgnore
+    private List<Referencia> referencia;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aspirante")
+    @JsonIgnore
+    private List<Evento> evento;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aspirante")
+    @JsonIgnore
+    private List<Publicacion> publicacion;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aspirante")
+    @JsonIgnore
+    private List<Documento> documento;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aspirante")
+    @JsonIgnore
+    private List<ExperienciaLaboral> experiencia_laboral;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "aspirante")
+    @JsonIgnore
+    private List<AspiranteHabilidad> aspiranteHabilidad;
 }

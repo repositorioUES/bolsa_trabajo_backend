@@ -5,6 +5,22 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AspiranteeRepository extends JpaRepository<Aspirante, Long> {
+public interface AspiranteRepository extends JpaRepository<Aspirante, Long> {
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public Aspirante getReferenceById(Long id);
 }
