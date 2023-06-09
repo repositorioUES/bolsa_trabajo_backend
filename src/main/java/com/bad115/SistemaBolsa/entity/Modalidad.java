@@ -1,6 +1,7 @@
 package com.bad115.SistemaBolsa.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,5 +28,6 @@ public class Modalidad {
     @ManyToMany
     @JsonBackReference
     @JoinTable(name = "oferta_modalidad", joinColumns = @JoinColumn(name = "modalidad_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"))
+    @JsonIgnore
     private Set<Oferta> ofertas = new HashSet<>();
 }

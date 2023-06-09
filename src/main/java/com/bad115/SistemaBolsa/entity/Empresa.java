@@ -1,5 +1,6 @@
 package com.bad115.SistemaBolsa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -34,6 +35,7 @@ public class Empresa {
     private String email;
 
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Oferta> ofertas = new HashSet<>();
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)

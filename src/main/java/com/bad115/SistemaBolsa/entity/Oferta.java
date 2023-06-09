@@ -38,6 +38,7 @@ public class Oferta {
 
     @ManyToMany
     @JoinTable(name = "oferta_modalidad", joinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "modalidad_id", referencedColumnName = "id"))
+    @JsonIgnore
     private Set<Modalidad> modalidades = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -52,5 +53,6 @@ public class Oferta {
 
     @ManyToMany
     @JoinTable(name = "aspirante_oferta", joinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "aspirante_id", referencedColumnName = "id"))
+    @JsonIgnore
     private Set<Aspirante> aspirantes = new HashSet<>();
 }

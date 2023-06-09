@@ -1,5 +1,6 @@
 package com.bad115.SistemaBolsa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,5 +29,6 @@ public class CategoriaOferta {
     private String descripcion;
 
     @OneToMany(mappedBy = "categoria_oferta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Oferta> ofertas = new HashSet<>();
 }

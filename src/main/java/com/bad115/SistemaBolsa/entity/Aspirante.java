@@ -1,6 +1,7 @@
 package com.bad115.SistemaBolsa.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -42,6 +43,7 @@ public class Aspirante {
     @Column(length = 30)
     private String segundo_apellido;
 
+
     private Date fecha_nacimiento;
 
     @Column(length = 17)
@@ -65,16 +67,26 @@ public class Aspirante {
     @ManyToMany
     @JsonBackReference
     @JoinTable(name = "aspirante_oferta", joinColumns = @JoinColumn(name = "aspirante_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"))
+    @JsonIgnore
     private Set<Oferta> ofertas = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "genero_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     private Genero genero;
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    //@MapsId
+    @JoinColumn(name = "usuario_id")
+    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
+    private Usuario usuario;
+
     @OneToMany(mappedBy = "aspirante", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<ConocimientoAcademico> conocimientos_academicos = new HashSet<>();
 
     @OneToMany(mappedBy = "aspirante", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Certificacion> certificaciones = new HashSet<>();
 }
