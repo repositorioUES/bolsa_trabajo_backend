@@ -1,6 +1,8 @@
 package com.bad115.SistemaBolsa.service.impl;
 
+import com.bad115.SistemaBolsa.entity.Aspirante;
 import com.bad115.SistemaBolsa.entity.Documento;
+import com.bad115.SistemaBolsa.repository.AspiranteRepository;
 import com.bad115.SistemaBolsa.repository.DocumentoRepository;
 import com.bad115.SistemaBolsa.service.DocumentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,16 @@ public class DocumentoServiceImpl implements DocumentoService {
 
     @Autowired
     private DocumentoRepository documentoRepository;
+    @Autowired
+    private AspiranteRepository aspiranteRepository;
 
     @Override
-    public Documento save(Documento documento) {
-        return documentoRepository.save(documento);
+    public Documento save(Documento documento, Long id) {
+        Documento d = new Documento();
+        d.setNombre_documento(documento.getNombre_documento());
+        d.setUri(documento.getUri());
+        d.setAspirante(aspiranteRepository.getReferenceById(id));
+        return documentoRepository.save(d);
     }
 
     @Override
@@ -30,6 +38,13 @@ public class DocumentoServiceImpl implements DocumentoService {
     }
 
     @Override
+    public List<Documento> getDocumentoByAspirante(Long id) {
+        Aspirante a = aspiranteRepository.getReferenceById(id);
+        List<Documento> documentos = documentoRepository.getByAspirante(a);
+        return documentos;
+    }
+
+    @Override
     public void delete(Long id) {
         documentoRepository.deleteById(id);
     }
@@ -40,5 +55,10 @@ public class DocumentoServiceImpl implements DocumentoService {
         d.setNombre_documento(documento.getNombre_documento());
         d.setUri(documento.getUri());
         return documentoRepository.save(d);
+    }
+
+    @Override
+    public boolean existById(Long id) {
+        return documentoRepository.existsById(id);
     }
 }

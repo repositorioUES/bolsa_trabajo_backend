@@ -38,4 +38,5 @@ public class HabilidadController {
     public void deleteHabilidad(@PathVariable("id") Long id) {
         habilidadService.delete(id);
     }
+
 }

@@ -1,6 +1,5 @@
 package com.bad115.SistemaBolsa.controller;
 
-import com.bad115.SistemaBolsa.entity.Empresa;
 import com.bad115.SistemaBolsa.entity.Rol;
 import com.bad115.SistemaBolsa.entity.Usuario;
 import com.bad115.SistemaBolsa.entity.UsuarioRol;
@@ -22,7 +21,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
@@ -39,7 +38,9 @@ public class UsuarioController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
-    @PostMapping("/guardar")
+
+    /* Funcion que se encarga de registrar un usuario mediante username, password y email*/
+    @PostMapping("/registrar")
     public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{
 
         usuario.setPassword((this.bCryptPasswordEncoder.encode(usuario.getPassword())));
@@ -62,26 +63,31 @@ public class UsuarioController {
 
     }
 
+    /* Funcion que se encarga de listar un usuario enviando como parametro su username*/
     @GetMapping("/listar/{username}")
     public Usuario obtenerUsuario(@PathVariable("username") String username){
         return usuarioService.obtenerUsuario(username);
     }
 
+    /* Funcion que se encarga de eliminar un usuario enviando como parametro su id*/
     @DeleteMapping("/eliminar/{idUsuario}")
     public void eliminarUsuario(@PathVariable("idUsuario") Long idUsuario){
         usuarioService.eliminarUsuario(idUsuario);
     }
 
+    /* Funcion que se encarga de listar todos los usuarios*/
     @GetMapping("/listar-todos")
     public List<Usuario> obtenerUsuarios() {
         return usuarioService.obtenerUsuarios();
     }
 
-    @PutMapping("/editar/{idUsuario}")
+    /* Funcion que se encarga de editar el email de un usuario enviando como parametro su id */
+    @PutMapping("/editar-email/{idUsuario}")
     public Usuario actualizarUsuario(@PathVariable("idUsuario") Long idUsuario, @RequestBody Usuario usuario) {
         return usuarioService.actualizarUsuario(usuario, idUsuario);
     }
 
+    /* Funcion que se encarga de asignar un rol al usuario actual*/
     @PostMapping("/asignar-rol")
     public ResponseEntity<String> agregarRolUsuario(Principal principal, @RequestBody Map<String, Long> requestBody) {
         Long rolId = requestBody.get("rolId");

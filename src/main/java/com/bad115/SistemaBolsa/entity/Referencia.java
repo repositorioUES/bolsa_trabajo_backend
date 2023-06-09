@@ -1,12 +1,16 @@
 package com.bad115.SistemaBolsa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,5 +30,13 @@ public class Referencia {
     private String telefono_referencia;
     private String email_referencia;
 
-    //private Long id_aspirante;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "referencia")
+    @JsonIgnore
+    private List<DetalleReferencia> detalleReferencia;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    @JoinColumn(name = "id_aspirante", nullable = false)
+    private Aspirante aspirante;
 }

@@ -6,13 +6,17 @@ import java.util.List;
 
 public interface DocumentoService {
 
-    public Documento save(Documento documento);
+    public Documento save(Documento documento, Long id);
 
     public Documento getDocumento(Long id);
 
     public List<Documento> getDocumentos();
 
+    public List<Documento> getDocumentoByAspirante(Long id);
+
     public void delete(Long id);
 
     public Documento update(Documento documento, Long id);
+
+    public boolean existById(Long id);
 }
