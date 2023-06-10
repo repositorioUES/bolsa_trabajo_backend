@@ -1,5 +1,6 @@
 package com.bad115.SistemaBolsa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -42,5 +43,6 @@ public class ConocimientoAcademico {
 
     @ManyToMany
     @JoinTable(name = "conocimiento_academico_institucion", joinColumns = @JoinColumn(name = "conocimiento_academico_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "institucion_id", referencedColumnName = "id"))
+    @JsonIgnore
     private Set<Institucion> instituciones = new HashSet<>();
 }

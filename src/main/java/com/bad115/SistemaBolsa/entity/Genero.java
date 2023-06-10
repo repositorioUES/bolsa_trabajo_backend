@@ -1,5 +1,6 @@
 package com.bad115.SistemaBolsa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,5 +25,6 @@ public class Genero {
     private String nombre;
 
     @OneToMany(mappedBy = "genero", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Aspirante> aspirantes = new HashSet<>();
 }
