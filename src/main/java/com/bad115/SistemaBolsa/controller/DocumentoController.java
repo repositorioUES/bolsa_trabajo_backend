@@ -52,20 +52,8 @@ public class DocumentoController {
     public Documento saveDocumento(@ModelAttribute Documento documento, @RequestParam ("file") MultipartFile file, @PathVariable("id") Long id) {
         Documento doc = new Documento();
         doc.setNombre_documento(documento.getNombre_documento());
-        doc.setUri(uploadFile(file));
-        /*if(!file.isEmpty()){
-            Path directorio = Paths.get("src//main//Files");
-            String rutaAbs = directorio.toFile().getAbsolutePath();
 
-            try {
-                byte[] bytesFile = file.getBytes();
-                Path rutaCompleta = Paths.get(rutaAbs + "//" + file.getOriginalFilename());
-                Files.write(rutaCompleta,bytesFile);
-                doc.setUri(String.valueOf(rutaCompleta));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }*/
+        doc.setUri(uploadFile(file)); // Aqui se hace el guardado del file y la generacion de la URL
 
         return documentoService.save(doc, id);
     }
