@@ -14,9 +14,13 @@ public class AspiranteController {
     @Autowired
     private AspiranteService aspiranteService;
 
-    @PostMapping
-    public Aspirante guardarAspirante(@RequestBody Aspirante aspirante) {
-        return aspiranteService.guardarAspirante(aspirante);
+    @PostMapping("/genero/{generoId}/usuario/{usuarioId}")
+    public Aspirante guardarAspirante(
+            @RequestBody Aspirante aspirante,
+            @PathVariable Long generoId,
+            @PathVariable Long usuarioId
+    ) {
+        return aspiranteService.guardarAspirante(aspirante, generoId, usuarioId);
     }
 
     @GetMapping

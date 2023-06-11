@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface AspiranteService {
 
-    public Aspirante guardarAspirante(Aspirante aspirante);
+    public Aspirante guardarAspirante(Aspirante aspirante, Long generoId, Long usuarioId);
 
     public Aspirante obtenerAspirante(Long id);
 

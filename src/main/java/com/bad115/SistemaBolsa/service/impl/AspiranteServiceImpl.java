@@ -32,9 +32,9 @@ public class AspiranteServiceImpl implements AspiranteService {
     private OfertaRepository ofertaRepository;
 
     @Override
-    public Aspirante guardarAspirante(Aspirante aspirante) {
-        Usuario u = usuarioRepository.getReferenceById(aspirante.getUsuario().getIdUsuario());
-        Genero g = generoRepository.getReferenceById(aspirante.getGenero().getId());
+    public Aspirante guardarAspirante(Aspirante aspirante, Long generoId, Long usuarioId) {
+        Usuario u = usuarioRepository.getReferenceById(usuarioId);
+        Genero g = generoRepository.getReferenceById(generoId);
 
         Aspirante a = new Aspirante();
         a.setTipo_documento(aspirante.getTipo_documento());
