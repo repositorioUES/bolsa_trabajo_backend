@@ -12,6 +12,8 @@ public interface ConocimientoAcademicoService {
 
     public List<ConocimientoAcademico> obtenerConocimientos();
 
+    public ConocimientoAcademico agregarInstitucion(Long conocimientoId, Long institucionId);
+
     public ConocimientoAcademico actualizarConocmiento(ConocimientoAcademico conocimientoAcademico, Long id);
 
     public void eliminarConocimiento(Long id);

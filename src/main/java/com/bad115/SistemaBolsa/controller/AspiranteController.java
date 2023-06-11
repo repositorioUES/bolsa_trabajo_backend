@@ -29,6 +29,14 @@ public class AspiranteController {
         return aspiranteService.obtenerAspirante(id);
     }
 
+    @PutMapping("/{aspiranteId}/oferta/{ofertaId}")
+    public Aspirante aplicarOferta(
+            @PathVariable Long aspiranteId,
+            @PathVariable Long ofertaId
+    ) {
+        return aspiranteService.aplicarOferta(aspiranteId, ofertaId);
+    }
+
     @PutMapping("/{id}")
     public Aspirante actualizarAspirante(@PathVariable("id") Long id, @RequestBody Aspirante aspirante) {
         return aspiranteService.actualizarAspirante(aspirante, id);

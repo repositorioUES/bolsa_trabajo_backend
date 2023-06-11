@@ -26,4 +26,9 @@ public class Ubicacion {
 
     @Column(length = 30)
     private String longitud;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "oferta_id")
+    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
+    private Oferta oferta;
 }

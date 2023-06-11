@@ -29,6 +29,14 @@ public class ConocimientoAcademicoController {
         return conocimientoAcademicoService.obtenerConocimiento(id);
     }
 
+    @PutMapping("/{conocimientoId}/institucion/{institucionId}")
+    public ConocimientoAcademico agregarInstitucion(
+        @PathVariable Long conocimientoId,
+        @PathVariable Long institucionId
+    ) {
+        return conocimientoAcademicoService.agregarInstitucion(conocimientoId, institucionId);
+    }
+
     @PutMapping("/{id}")
     public ConocimientoAcademico actualizarConocimiento(@PathVariable("id") Long id, @RequestBody ConocimientoAcademico conocimientoAcademico) {
         return conocimientoAcademicoService.actualizarConocmiento(conocimientoAcademico, id);

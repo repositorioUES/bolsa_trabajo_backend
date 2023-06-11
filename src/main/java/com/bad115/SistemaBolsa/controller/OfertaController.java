@@ -3,6 +3,7 @@ package com.bad115.SistemaBolsa.controller;
 import com.bad115.SistemaBolsa.entity.Oferta;
 import com.bad115.SistemaBolsa.service.OfertaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +34,14 @@ public class OfertaController {
     @PutMapping("/{id}")
     public Oferta actualizarOferta(@PathVariable("id") Long id, @RequestBody Oferta oferta) {
         return ofertaService.actualizarOferta(oferta, id);
+    }
+
+    @PutMapping("/{ofertaId}/modalidad/{modalidadId}")
+    public Oferta guardarModalidad(
+            @PathVariable Long ofertaId,
+            @PathVariable Long modalidadId
+    ) {
+        return ofertaService.agregarModalidad(ofertaId, modalidadId);
     }
 
     @DeleteMapping("/{id}")

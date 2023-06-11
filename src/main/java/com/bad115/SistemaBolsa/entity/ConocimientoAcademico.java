@@ -42,7 +42,9 @@ public class ConocimientoAcademico {
     private Aspirante aspirante;
 
     @ManyToMany
-    @JoinTable(name = "conocimiento_academico_institucion", joinColumns = @JoinColumn(name = "conocimiento_academico_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "institucion_id", referencedColumnName = "id"))
+    @JoinTable(name = "conocimiento_academico_institucion",
+            joinColumns = @JoinColumn(name = "conocimiento_academico_id"),
+            inverseJoinColumns = @JoinColumn(name = "institucion_id"))
     @JsonIgnore
-    private Set<Institucion> instituciones = new HashSet<>();
+    private Set<Institucion> instituciones;
 }

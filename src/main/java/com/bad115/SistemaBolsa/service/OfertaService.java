@@ -14,6 +14,8 @@ public interface OfertaService {
 
     public Oferta obtenerOferta(Long id);
 
+    public Oferta agregarModalidad(Long ofertaId, Long modalidadId);
+
     public Oferta actualizarOferta(Oferta oferta, Long id);
 
     public void eliminarOferta(Long id);

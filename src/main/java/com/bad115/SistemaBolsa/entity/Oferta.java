@@ -31,15 +31,13 @@ public class Oferta {
     @Column(length = 30)
     private String rango_salarial;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "ubicacion_id")
-    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
-    private Ubicacion ubicacion;
-
     @ManyToMany
-    @JoinTable(name = "oferta_modalidad", joinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "modalidad_id", referencedColumnName = "id"))
+    @JoinTable(name = "oferta_modalidad",
+            joinColumns = @JoinColumn(name = "oferta_id"),
+            inverseJoinColumns = @JoinColumn(name = "modalidad_id")
+    )
     @JsonIgnore
-    private Set<Modalidad> modalidades = new HashSet<>();
+    private Set<Modalidad> modalidades;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "categoria_oferta_id")
@@ -52,7 +50,7 @@ public class Oferta {
     private Empresa empresa;
 
     @ManyToMany
-    @JoinTable(name = "aspirante_oferta", joinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "aspirante_id", referencedColumnName = "id"))
+    //@JoinTable(name = "aspirante_oferta", joinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "aspirante_id", referencedColumnName = "id"))
     @JsonIgnore
-    private Set<Aspirante> aspirantes = new HashSet<>();
+    private Set<Aspirante> aspirantes;
 }

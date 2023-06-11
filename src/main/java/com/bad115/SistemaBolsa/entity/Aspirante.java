@@ -66,10 +66,12 @@ public class Aspirante {
     private String redes_sociales;
 
     @ManyToMany
-    @JsonBackReference
-    @JoinTable(name = "aspirante_oferta", joinColumns = @JoinColumn(name = "aspirante_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"))
+    @JoinTable(name = "aspirante_oferta",
+            joinColumns = @JoinColumn(name = "aspirante_id"),
+            inverseJoinColumns = @JoinColumn(name = "oferta_id")
+    )
     @JsonIgnore
-    private Set<Oferta> ofertas = new HashSet<>();
+    private Set<Oferta> ofertas;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "genero_id")

@@ -26,8 +26,8 @@ public class Modalidad {
     private String nombre;
 
     @ManyToMany
-    @JsonBackReference
-    @JoinTable(name = "oferta_modalidad", joinColumns = @JoinColumn(name = "modalidad_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"))
+    //@JsonBackReference
+    //@JoinTable(name = "oferta_modalidad", joinColumns = @JoinColumn(name = "modalidad_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "oferta_id", referencedColumnName = "id"))
     @JsonIgnore
     private Set<Oferta> ofertas = new HashSet<>();
 }

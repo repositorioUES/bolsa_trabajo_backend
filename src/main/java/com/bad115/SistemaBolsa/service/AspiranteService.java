@@ -15,6 +15,8 @@ public interface AspiranteService {
 
     public List<Aspirante> obtenerAspirantes();
 
+    public Aspirante aplicarOferta(Long aspiranteId, Long ofertaId);
+
     public Aspirante actualizarAspirante(Aspirante aspirante, Long id);
 
     public void eliminarAspirante(Long id);
