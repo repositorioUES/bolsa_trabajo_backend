@@ -21,8 +21,8 @@ public class EmpresaServiceImpl implements EmpresaService {
     private UsuarioRepository usuarioRepository;
 
     @Override
-    public Empresa guardarEmpresa(Empresa empresa) {
-        Usuario usuario = usuarioRepository.getReferenceById(empresa.getUsuario().getIdUsuario());
+    public Empresa guardarEmpresa(Empresa empresa, Long usuarioId) {
+        Usuario usuario = usuarioRepository.getReferenceById(usuarioId);
 
         //if (usuario != null) {
         Empresa e = new Empresa();
@@ -46,15 +46,18 @@ public class EmpresaServiceImpl implements EmpresaService {
     }
 
     @Override
-    public Empresa actualizarEmpresa(Empresa empresa, Long id){
-        Empresa empresaLocal = empresaRepository.getReferenceById(id);
-        Usuario usuarioLocal = usuarioRepository.getReferenceById(empresa.getUsuario().getIdUsuario());
-        empresaLocal.setNombre(empresa.getNombre());
-        empresaLocal.setTelefono(empresa.getTelefono());
-        empresaLocal.setEmail(empresa.getEmail());
-        //empresaLocal.setOfertas(empresa.getOfertas());
-        empresaLocal.setUsuario(usuarioLocal);
-        return empresaRepository.save(empresaLocal);
+    public Empresa actualizarEmpresa(Empresa empresa, Long id, Long usuarioId){
+        Usuario usuario = usuarioRepository.getReferenceById(usuarioId);
+
+        //if (usuario != null) {
+        Empresa e = empresaRepository.getReferenceById(id);
+        e.setNombre(empresa.getNombre());
+        e.setEmail(empresa.getEmail());
+        e.setTelefono(empresa.getTelefono());
+        e.setUsuario(usuario);
+        return empresaRepository.save(e);
+        //}
+        //return empresaRepository.save(empresa);
     }
 
     @Override

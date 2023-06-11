@@ -77,26 +77,27 @@ public class AspiranteServiceImpl implements AspiranteService {
     }
 
     @Override
-    public Aspirante actualizarAspirante(Aspirante aspirante, Long id) {
-        Aspirante aspiranteLocal = aspiranteRepository.getReferenceById(id);
-        aspiranteLocal.setTipo_documento(aspirante.getTipo_documento());
-        aspiranteLocal.setNumero_documento_identidad(aspirante.getNumero_documento_identidad());
-        aspiranteLocal.setPrimer_nombre(aspirante.getPrimer_nombre());
-        aspiranteLocal.setSegundo_nombre(aspirante.getSegundo_nombre());
-        aspiranteLocal.setPrimer_apellido(aspirante.getPrimer_apellido());
-        aspiranteLocal.setSegundo_apellido(aspirante.getSegundo_apellido());
-        aspiranteLocal.setFecha_nacimiento(aspirante.getFecha_nacimiento());
-        aspiranteLocal.setNit(aspirante.getNit());
-        aspiranteLocal.setNup(aspirante.getNup());
-        aspiranteLocal.setTelefono_casa(aspirante.getTelefono_casa());
-        aspiranteLocal.setTelefono_personal(aspirante.getTelefono_personal());
-        aspiranteLocal.setEmail(aspirante.getEmail());
-        aspiranteLocal.setRedes_sociales(aspirante.getRedes_sociales());
-        aspiranteLocal.setOfertas(aspirante.getOfertas());
-        aspiranteLocal.setGenero(aspirante.getGenero());
-        aspiranteLocal.setConocimientos_academicos(aspirante.getConocimientos_academicos());
-        aspiranteLocal.setCertificaciones(aspirante.getCertificaciones());
-        return aspiranteRepository.save(aspiranteLocal);
+    public Aspirante actualizarAspirante(Aspirante aspirante, Long id, Long generoId, Long usuarioId) {
+        Usuario u = usuarioRepository.getReferenceById(usuarioId);
+        Genero g = generoRepository.getReferenceById(generoId);
+
+        Aspirante a = aspiranteRepository.getReferenceById(id);
+        a.setTipo_documento(aspirante.getTipo_documento());
+        a.setNumero_documento_identidad(aspirante.getNumero_documento_identidad());
+        a.setPrimer_nombre(aspirante.getPrimer_nombre());
+        a.setSegundo_nombre(aspirante.getSegundo_nombre());
+        a.setPrimer_apellido(aspirante.getPrimer_apellido());
+        a.setSegundo_apellido(aspirante.getSegundo_apellido());
+        a.setFecha_nacimiento(aspirante.getFecha_nacimiento());
+        a.setNit(aspirante.getNit());
+        a.setNup(aspirante.getNup());
+        a.setTelefono_casa(aspirante.getTelefono_casa());
+        a.setTelefono_personal(aspirante.getTelefono_personal());
+        a.setEmail(aspirante.getEmail());
+        a.setRedes_sociales(aspirante.getRedes_sociales());
+        a.setUsuario(u);
+        a.setGenero(g);
+        return aspiranteRepository.save(a);
     }
 
     @Override

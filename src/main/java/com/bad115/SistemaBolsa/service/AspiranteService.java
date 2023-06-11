@@ -17,7 +17,7 @@ public interface AspiranteService {
 
     public Aspirante aplicarOferta(Long aspiranteId, Long ofertaId);
 
-    public Aspirante actualizarAspirante(Aspirante aspirante, Long id);
+    public Aspirante actualizarAspirante(Aspirante aspirante, Long id, Long generoId, Long usuarioId);
 
     public void eliminarAspirante(Long id);
 }

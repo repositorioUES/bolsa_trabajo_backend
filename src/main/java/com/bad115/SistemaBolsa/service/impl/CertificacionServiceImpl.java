@@ -19,8 +19,8 @@ public class CertificacionServiceImpl implements CertificacionService {
     private AspiranteRepository aspiranteRepository;
 
     @Override
-    public Certificacion guardarCertificacion(Certificacion certificacion) {
-        Aspirante a = aspiranteRepository.getReferenceById(certificacion.getAspirante().getId());
+    public Certificacion guardarCertificacion(Certificacion certificacion, Long aspiranteId) {
+        Aspirante a = aspiranteRepository.getReferenceById(aspiranteId);
         Certificacion c = new Certificacion();
         c.setCodigo(certificacion.getCodigo());
         c.setNombre(certificacion.getNombre());
@@ -43,8 +43,8 @@ public class CertificacionServiceImpl implements CertificacionService {
     }
 
     @Override
-    public Certificacion actualizarCertificacion(Certificacion certificacion, Long id) {
-        Aspirante a = aspiranteRepository.getReferenceById(certificacion.getAspirante().getId());
+    public Certificacion actualizarCertificacion(Certificacion certificacion, Long id, Long aspiranteId) {
+        Aspirante a = aspiranteRepository.getReferenceById(aspiranteId);
         Certificacion c = certificacionRepository.getReferenceById(id);
         c.setCodigo(certificacion.getCodigo());
         c.setNombre(certificacion.getNombre());

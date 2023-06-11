@@ -14,9 +14,12 @@ public class UbicacionController {
     @Autowired
     public UbicacionService ubicacionService;
 
-    @PostMapping
-    public Ubicacion guardarUbicacion(@RequestBody Ubicacion ubicacion) {
-        return ubicacionService.guardarUbicacion(ubicacion);
+    @PostMapping("/oferta/{ofertaId}")
+    public Ubicacion guardarUbicacion(
+            @RequestBody Ubicacion ubicacion,
+            @PathVariable Long ofertaId
+    ) {
+        return ubicacionService.guardarUbicacion(ubicacion, ofertaId);
     }
 
     @GetMapping
@@ -29,9 +32,13 @@ public class UbicacionController {
         return ubicacionService.obtenerUbicacion(id);
     }
 
-    @PutMapping("/{id}")
-    public Ubicacion actualizarUbicacion(@PathVariable("id") Long id, @RequestBody Ubicacion ubicacion) {
-        return ubicacionService.actualizarUbicacion(ubicacion, id);
+    @PutMapping("/{id}/oferta/{ofertaId}")
+    public Ubicacion actualizarUbicacion(
+            @PathVariable("id") Long id,
+            @RequestBody Ubicacion ubicacion,
+            @PathVariable Long ofertaId
+    ) {
+        return ubicacionService.actualizarUbicacion(ubicacion, id, ofertaId);
     }
 
     @DeleteMapping("/{id}")

@@ -14,9 +14,12 @@ public class CertificacionController {
     @Autowired
     private CertificacionService certificacionService;
 
-    @PostMapping
-    public Certificacion guardarCertificacion(@RequestBody Certificacion certificacion) {
-        return certificacionService.guardarCertificacion(certificacion);
+    @PostMapping("/aspirante/{aspiranteId}")
+    public Certificacion guardarCertificacion(
+            @RequestBody Certificacion certificacion,
+            @PathVariable Long aspiranteId
+    ) {
+        return certificacionService.guardarCertificacion(certificacion, aspiranteId);
     }
 
     @GetMapping
@@ -29,9 +32,13 @@ public class CertificacionController {
         return certificacionService.obtenerCertificacion(id);
     }
 
-    @PutMapping("/{id}")
-    public Certificacion actualizarCertificacion(@PathVariable("id") Long id, @RequestBody Certificacion certificacion) {
-        return certificacionService.actualizarCertificacion(certificacion, id);
+    @PutMapping("/{id}/aspirante/{aspiranteId}")
+    public Certificacion actualizarCertificacion(
+            @PathVariable("id") Long id,
+            @RequestBody Certificacion certificacion,
+            @PathVariable Long aspiranteId
+    ) {
+        return certificacionService.actualizarCertificacion(certificacion, id, aspiranteId);
     }
 
     @DeleteMapping("/{id}")

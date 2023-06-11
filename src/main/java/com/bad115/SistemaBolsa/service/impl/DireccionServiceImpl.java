@@ -2,6 +2,7 @@ package com.bad115.SistemaBolsa.service.impl;
 
 import com.bad115.SistemaBolsa.entity.Aspirante;
 import com.bad115.SistemaBolsa.entity.Direccion;
+import com.bad115.SistemaBolsa.repository.AspiranteRepository;
 import com.bad115.SistemaBolsa.repository.DireccionRepository;
 import com.bad115.SistemaBolsa.service.DireccionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,19 @@ public class DireccionServiceImpl implements DireccionService {
     @Autowired
     private DireccionRepository direccionRepository;
 
+    @Autowired
+    private AspiranteRepository aspiranteRepository;
+
     @Override
-    public Direccion guardarDireccion(Direccion direccion) {
-        return direccionRepository.save(direccion);
+    public Direccion guardarDireccion(Direccion direccion, Long aspiranteId) {
+        Aspirante a = aspiranteRepository.getReferenceById(aspiranteId);
+        Direccion d = new Direccion();
+        d.setPasaje(direccion.getPasaje());
+        d.setColonia(direccion.getColonia());
+        d.setCalle(direccion.getCalle());
+        d.setNumero_casa(direccion.getNumero_casa());
+        d.setAspirante(a);
+        return direccionRepository.save(d);
     }
 
     @Override
@@ -31,14 +42,15 @@ public class DireccionServiceImpl implements DireccionService {
     }
 
     @Override
-    public Direccion actualizarDireccion(Direccion direccion, Long id) {
-        Direccion direccionLocal = direccionRepository.getReferenceById(id);
-        direccionLocal.setCalle(direccion.getCalle());
-        direccionLocal.setColonia(direccion.getColonia());
-        direccionLocal.setNumero_casa(direccion.getNumero_casa());
-        direccionLocal.setPasaje(direccion.getPasaje());
-        direccionLocal.setAspirante(direccion.getAspirante());
-        return direccionRepository.save(direccionLocal);
+    public Direccion actualizarDireccion(Direccion direccion, Long id, Long aspiranteId) {
+        Aspirante a = aspiranteRepository.getReferenceById(aspiranteId);
+        Direccion d = direccionRepository.getReferenceById(id);
+        d.setPasaje(direccion.getPasaje());
+        d.setColonia(direccion.getColonia());
+        d.setCalle(direccion.getCalle());
+        d.setNumero_casa(direccion.getNumero_casa());
+        d.setAspirante(a);
+        return direccionRepository.save(d);
     }
 
     @Override

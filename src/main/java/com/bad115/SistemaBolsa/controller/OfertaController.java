@@ -15,10 +15,14 @@ public class OfertaController {
     @Autowired
     private OfertaService ofertaService;
 
-    @PostMapping
-    public Oferta guardarOferta(@RequestBody Oferta oferta) {
+    @PostMapping("/categoria/{categoriaId}/empresa/{empresaId}")
+    public Oferta guardarOferta(
+            @RequestBody Oferta oferta,
+            @PathVariable Long categoriaId,
+            @PathVariable Long empresaId
+    ) {
 
-        return ofertaService.guardarOferta(oferta);
+        return ofertaService.guardarOferta(oferta, categoriaId, empresaId);
     }
 
     @GetMapping
@@ -31,9 +35,14 @@ public class OfertaController {
         return ofertaService.obtenerOferta(id);
     }
 
-    @PutMapping("/{id}")
-    public Oferta actualizarOferta(@PathVariable("id") Long id, @RequestBody Oferta oferta) {
-        return ofertaService.actualizarOferta(oferta, id);
+    @PutMapping("/{id}/categoria/{categoriaId}/empresa/{empresaId}")
+    public Oferta actualizarOferta(
+            @PathVariable("id") Long id,
+            @RequestBody Oferta oferta,
+            @PathVariable Long categoriaId,
+            @PathVariable Long empresaId
+    ) {
+        return ofertaService.actualizarOferta(oferta, id, categoriaId, empresaId);
     }
 
     @PutMapping("/{ofertaId}/modalidad/{modalidadId}")

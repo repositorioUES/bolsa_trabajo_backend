@@ -31,9 +31,9 @@ public class OfertaServiceImpl implements OfertaService {
     private ModalidadRepository modalidadRepository;
 
     @Override
-    public Oferta guardarOferta(Oferta oferta) {
-        CategoriaOferta c = categoriaOfertaRepository.getReferenceById(oferta.getCategoria_oferta().getId());
-        Empresa e = empresaRepository.getReferenceById(oferta.getEmpresa().getId());
+    public Oferta guardarOferta(Oferta oferta, Long categoriaId, Long empresaId) {
+        CategoriaOferta c = categoriaOfertaRepository.getReferenceById(categoriaId);
+        Empresa e = empresaRepository.getReferenceById(empresaId);
 
         Oferta o = new Oferta();
         o.setNombre(oferta.getNombre());
@@ -67,9 +67,9 @@ public class OfertaServiceImpl implements OfertaService {
 
 
     @Override
-    public Oferta actualizarOferta(Oferta oferta, Long id) {
-        CategoriaOferta c = categoriaOfertaRepository.getReferenceById(oferta.getCategoria_oferta().getId());
-        Empresa e = empresaRepository.getReferenceById(oferta.getEmpresa().getId());
+    public Oferta actualizarOferta(Oferta oferta, Long id, Long categoriaId, Long empresaId) {
+        CategoriaOferta c = categoriaOfertaRepository.getReferenceById(categoriaId);
+        Empresa e = empresaRepository.getReferenceById(empresaId);
 
         Oferta o = ofertaRepository.getReferenceById(id);
         o.setNombre(oferta.getNombre());

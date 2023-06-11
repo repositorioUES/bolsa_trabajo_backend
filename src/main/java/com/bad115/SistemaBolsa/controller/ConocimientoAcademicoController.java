@@ -14,9 +14,12 @@ public class ConocimientoAcademicoController {
     @Autowired
     private ConocimientoAcademicoService conocimientoAcademicoService;
 
-    @PostMapping
-    public ConocimientoAcademico obtenerConocimientos(@RequestBody ConocimientoAcademico conocimientoAcademico) {
-        return conocimientoAcademicoService.guardarConocimiento(conocimientoAcademico);
+    @PostMapping("/aspirante/{aspiranteId}")
+    public ConocimientoAcademico obtenerConocimientos(
+            @RequestBody ConocimientoAcademico conocimientoAcademico,
+            @PathVariable Long aspiranteId
+    ) {
+        return conocimientoAcademicoService.guardarConocimiento(conocimientoAcademico, aspiranteId);
     }
 
     @GetMapping
@@ -37,9 +40,13 @@ public class ConocimientoAcademicoController {
         return conocimientoAcademicoService.agregarInstitucion(conocimientoId, institucionId);
     }
 
-    @PutMapping("/{id}")
-    public ConocimientoAcademico actualizarConocimiento(@PathVariable("id") Long id, @RequestBody ConocimientoAcademico conocimientoAcademico) {
-        return conocimientoAcademicoService.actualizarConocmiento(conocimientoAcademico, id);
+    @PutMapping("/{id}/aspirante/{aspiranteId}")
+    public ConocimientoAcademico actualizarConocimiento(
+            @PathVariable("id") Long id,
+            @RequestBody ConocimientoAcademico conocimientoAcademico,
+            @PathVariable Long aspiranteId
+    ) {
+        return conocimientoAcademicoService.actualizarConocmiento(conocimientoAcademico, id, aspiranteId);
     }
 
     @DeleteMapping("/{id}")

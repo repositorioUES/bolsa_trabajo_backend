@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public interface ConocimientoAcademicoService {
-    public ConocimientoAcademico guardarConocimiento(ConocimientoAcademico conocimientoAcademico);
+    public ConocimientoAcademico guardarConocimiento(ConocimientoAcademico conocimientoAcademico, Long aspiranteId);
 
     public ConocimientoAcademico obtenerConocimiento(Long id);
 
@@ -14,7 +14,7 @@ public interface ConocimientoAcademicoService {
 
     public ConocimientoAcademico agregarInstitucion(Long conocimientoId, Long institucionId);
 
-    public ConocimientoAcademico actualizarConocmiento(ConocimientoAcademico conocimientoAcademico, Long id);
+    public ConocimientoAcademico actualizarConocmiento(ConocimientoAcademico conocimientoAcademico, Long id, Long aspiranteId);
 
     public void eliminarConocimiento(Long id);
 }

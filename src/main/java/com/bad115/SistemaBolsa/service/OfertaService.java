@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface OfertaService {
 
-    public Oferta guardarOferta(Oferta oferta);
+    public Oferta guardarOferta(Oferta oferta, Long categoriaId, Long empresaId);
 
     public List<Oferta> obtenerOfertas();
 
@@ -16,7 +16,7 @@ public interface OfertaService {
 
     public Oferta agregarModalidad(Long ofertaId, Long modalidadId);
 
-    public Oferta actualizarOferta(Oferta oferta, Long id);
+    public Oferta actualizarOferta(Oferta oferta, Long id, Long categoriaId, Long empresaId);
 
     public void eliminarOferta(Long id);
 }

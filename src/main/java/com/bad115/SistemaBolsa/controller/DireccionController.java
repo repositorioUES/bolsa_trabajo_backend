@@ -14,9 +14,12 @@ public class DireccionController {
     @Autowired
     private DireccionService direccionService;
 
-    @PostMapping
-    public Direccion guardarDireccion(@RequestBody Direccion direccion) {
-        return direccionService.guardarDireccion(direccion);
+    @PostMapping("/aspirante/{aspiranteId}")
+    public Direccion guardarDireccion(
+            @RequestBody Direccion direccion,
+            @PathVariable Long aspiranteId
+    ) {
+        return direccionService.guardarDireccion(direccion, aspiranteId);
     }
 
     @GetMapping
@@ -29,9 +32,13 @@ public class DireccionController {
         return direccionService.obtenerDireccion(id);
     }
 
-    @PutMapping("/{id}")
-    public Direccion actualizarDireccion(@PathVariable("id") Long id, @RequestBody Direccion direccion) {
-        return direccionService.actualizarDireccion(direccion, id);
+    @PutMapping("/{id}/aspirante/{aspiranteId}")
+    public Direccion actualizarDireccion(
+            @PathVariable("id") Long id,
+            @RequestBody Direccion direccion,
+            @PathVariable Long aspiranteId
+    ) {
+        return direccionService.actualizarDireccion(direccion, id, aspiranteId);
     }
 
     @DeleteMapping("/{id}")

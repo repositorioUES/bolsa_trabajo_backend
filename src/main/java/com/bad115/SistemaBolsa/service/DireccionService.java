@@ -8,15 +8,13 @@ import java.util.List;
 
 public interface DireccionService {
 
-    public Direccion guardarDireccion(Direccion direccion);
+    public Direccion guardarDireccion(Direccion direccion, Long aspiranteId);
 
     public Direccion obtenerDireccion(Long id);
 
     public List<Direccion> obtenerDirecciones();
 
-    public Direccion actualizarDireccion(Direccion direccion, Long id);
-
-    public Direccion actualizarDireccion(Direccion direccion, Aspirante aspirante);
+    public Direccion actualizarDireccion(Direccion direccion, Long id, Long aspiranteId);
 
     public void eliminarDireccion(Long id);
 

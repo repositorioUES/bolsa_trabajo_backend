@@ -1,7 +1,9 @@
 package com.bad115.SistemaBolsa.service.impl;
 
+import com.bad115.SistemaBolsa.entity.Aspirante;
 import com.bad115.SistemaBolsa.entity.ConocimientoAcademico;
 import com.bad115.SistemaBolsa.entity.Institucion;
+import com.bad115.SistemaBolsa.repository.AspiranteRepository;
 import com.bad115.SistemaBolsa.repository.ConocimientoAcademicoRepository;
 import com.bad115.SistemaBolsa.repository.InstitucionRepository;
 import com.bad115.SistemaBolsa.service.ConocimientoAcademicoService;
@@ -20,10 +22,20 @@ public class ConocimientoAcedemicoServiceImpl implements ConocimientoAcademicoSe
     @Autowired
     private InstitucionRepository institucionRepository;
 
+    @Autowired
+    private AspiranteRepository aspiranteRepository;
+
 
     @Override
-    public ConocimientoAcademico guardarConocimiento(ConocimientoAcademico conocimientoAcademico) {
-        return conocimientoAcademicoRepository.save(conocimientoAcademico);
+    public ConocimientoAcademico guardarConocimiento(ConocimientoAcademico conocimientoAcademico, Long aspiranteId) {
+        Aspirante a = aspiranteRepository.getReferenceById(aspiranteId);
+        ConocimientoAcademico c = new ConocimientoAcademico();
+        c.setTipo_conocimiento(conocimientoAcademico.getTipo_conocimiento());
+        c.setTitulo_obtenido(conocimientoAcademico.getTitulo_obtenido());
+        c.setFecha_inico(conocimientoAcademico.getFecha_inico());
+        c.setFecha_fin(conocimientoAcademico.getFecha_fin());
+        c.setAspirante(a);
+        return conocimientoAcademicoRepository.save(c);
     }
 
     @Override
@@ -48,15 +60,15 @@ public class ConocimientoAcedemicoServiceImpl implements ConocimientoAcademicoSe
     }
 
     @Override
-    public ConocimientoAcademico actualizarConocmiento(ConocimientoAcademico conocimientoAcademico, Long id) {
-        ConocimientoAcademico conocimientoLocal = conocimientoAcademicoRepository.getReferenceById(id);
-        conocimientoLocal.setTipo_conocimiento(conocimientoAcademico.getTipo_conocimiento());
-        conocimientoLocal.setFecha_inico(conocimientoAcademico.getFecha_inico());
-        conocimientoLocal.setFecha_fin(conocimientoAcademico.getFecha_fin());
-        conocimientoLocal.setTitulo_obtenido(conocimientoAcademico.getTitulo_obtenido());
-        conocimientoLocal.setAspirante(conocimientoAcademico.getAspirante());
-        conocimientoLocal.setInstituciones(conocimientoAcademico.getInstituciones());
-        return conocimientoAcademicoRepository.save(conocimientoLocal);
+    public ConocimientoAcademico actualizarConocmiento(ConocimientoAcademico conocimientoAcademico, Long id, Long aspiranteId) {
+        Aspirante a = aspiranteRepository.getReferenceById(aspiranteId);
+        ConocimientoAcademico c = conocimientoAcademicoRepository.getReferenceById(id);
+        c.setTipo_conocimiento(conocimientoAcademico.getTipo_conocimiento());
+        c.setTitulo_obtenido(conocimientoAcademico.getTitulo_obtenido());
+        c.setFecha_inico(conocimientoAcademico.getFecha_inico());
+        c.setFecha_fin(conocimientoAcademico.getFecha_fin());
+        c.setAspirante(a);
+        return conocimientoAcademicoRepository.save(c);
     }
 
     @Override

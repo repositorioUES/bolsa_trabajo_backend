@@ -14,9 +14,12 @@ public class EmpresaController {
     @Autowired
     private EmpresaService empresaService;
 
-    @PostMapping
-    public Empresa guardarEmpresa(@RequestBody Empresa empresa) {
-        return empresaService.guardarEmpresa(empresa);
+    @PostMapping("/usuario/{usuarioId}")
+    public Empresa guardarEmpresa(
+            @RequestBody Empresa empresa,
+            @PathVariable Long usuarioId
+    ) {
+        return empresaService.guardarEmpresa(empresa, usuarioId);
     }
 
     @GetMapping
@@ -29,9 +32,13 @@ public class EmpresaController {
         return empresaService.obtenerEmpresa(id);
     }
 
-    @PutMapping("/{id}")
-    public Empresa actualizarEmpresa(@PathVariable("id") Long id, @RequestBody Empresa empresa) {
-        return empresaService.actualizarEmpresa(empresa, id);
+    @PutMapping("/{id}/usuario/{usuarioId}")
+    public Empresa actualizarEmpresa(
+            @PathVariable("id") Long id,
+            @RequestBody Empresa empresa,
+            @PathVariable Long usuarioId
+    ) {
+        return empresaService.actualizarEmpresa(empresa, id, usuarioId);
     }
 
     @DeleteMapping("/{id}")
